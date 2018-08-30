@@ -8,7 +8,7 @@ The purpose of the project is to build PID controllers for the vehicle in the si
 The simulator will provide the cross track error (CTE) and the velocity (mph) in order to compute the appropriate steering angle. And PID controllers will output the steering angle and throttle value, which will then be used to drive the vehicle in the track. 
 
 ## Reflection
-* Describe the effect each of the P, I, D components had in your implementation
+* _Describe the effect each of the P, I, D components had in your implementation_
 
 The P means proportional. It controls how intensely the vehicle responds to CTE. If the CTE is the same, the vehicle with smaller Kp will steer or deaccelerate slighter.
 
@@ -16,9 +16,12 @@ The I means integral. I error is the total error, and is actually the steady sta
 
 The D means differential. D component reduces overshoot and oscillations.
 
-* Describe how the final hyperparameters were chosen
+* _Describe how the final hyperparameters were chosen_
 
-To tuning the PID controller for steering angle, I set the throttle value to 0.5. Then I manually modified hyperparameters in the PID controller until the vehicle could run roughly along the track without going outside the track. Then I used "twiddle" method to automatically optimize hyperparameters in the PID controller. Since I set the method to optimize one hyperparameters once every 1100 steps(100 steps to converge and 1000 steps to measure errors), which was pretty long distance, it was neccessary to manually modified the PID controller and let the vehicle be able to run along the track automatically. The initial value to be changed on Kp, Ki and Kd was one tenth of its own value. And I kept running the "twiddle" optimization until all of Kp, Kd and Ki did not change in continuous 9 loops, which means each of these hpyerparameters did not changes during the last 3 chances. The final {Kp, Ki, Kd} in the steering controller is:
+* tuning the PID controller for steering angle
+I set the throttle value to 0.5. Then I manually modified hyperparameters in the PID controller until the vehicle could run roughly along the track without going outside the track. Then I used "twiddle" method to automatically optimize hyperparameters in the PID controller. Since I set the method to optimize one hyperparameters once every 1100 steps(100 steps to converge and 1000 steps to measure errors), which was pretty long distance, it was neccessary to manually modified the PID controller and let the vehicle be able to run along the track automatically. The initial value to be changed on Kp, Ki and Kd was one tenth of its own value. And I kept running the "twiddle" optimization until all of Kp, Kd and Ki did not change in continuous 9 loops, which means each of these hpyerparameters did not changes during the last 3 chances. The final {Kp, Ki, Kd} in the steering controller is:
+
+* tuning the PID controller for throttle value
 After the PID controller for steering angle being fine tuned, I set a PD controller for throttle value. Since the total error did not matter much on the longitudinal speed control, the I component was abundoned. Besides, since the direction of CTE made no difference of letting the vehicle changing speed, the input to the PD controller was the absolute value of CTE. Then I ran the same "twiddle" optimization and the same critiria to tune hyperparameters. The final {Kp, Ki, Kd} in the throttle controller is:
 
 
