@@ -3,6 +3,13 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+## Purpose
+The purpose of the project is to build PID controllers for the vehicle in the simulator. And tune the PID hyperparameters until the the vehicle is able to drive successfully around the track.
+
+## Reflection
+* Describe the effect each of the P, I, D components had in your implementation
+* Describe how the final hyperparameters were chosen
+
 ## Dependencies
 
 * cmake >= 3.5
