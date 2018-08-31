@@ -41,7 +41,6 @@ void PID::UpdateError(double cte) {
 	d_error = cte - p_error;
 	p_error = cte;
 	i_error += cte;
-	double sum_dp = dp[1] + dp[2] + dp[3];
 	if (it % (it_eval + it_converge) > it_converge) {
 		total_error += pow(cte, 2);
 	}

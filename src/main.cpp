@@ -35,8 +35,8 @@ int main()
   PID pid_steer;
   PID pid_speed;
   // TODO: Initialize the pid variable.
-  //pid_steer.Init(0.15, 0.0001, 5.0);
-  pid_steer.Init(0.151635, 0.000099, 4.6355);
+  //pid_steer.Init(0.15, 0.0001, 7.0);
+  pid_steer.Init(0.151635, 0.000099, 6.6355);
   //pid_speed.Init(0.3, 0, 0.1);
   pid_speed.Init(0.3597, 0, 0.1199);
 
@@ -62,9 +62,14 @@ int main()
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
+		  //Whether use "twiddle" or not
 		  pid_steer.flag_twiddle = false;
+		  
+		  //Calculate steering value
 		  pid_steer.UpdateError(cte);
 		  steer_value = -pid_steer.p[0] * pid_steer.p_error - pid_steer.p[1] * pid_steer.i_error - pid_steer.p[2] * pid_steer.d_error;
+		  
+		  //Set limit for steering angle
 		  if (steer_value < -1) {
 			  steer_value = -1;
 		  }
@@ -72,9 +77,11 @@ int main()
 			  steer_value = 1;
 		  }
 
+		  //Whether use "twiddle" or not
 		  pid_speed.flag_twiddle = false;
+
 		  pid_speed.UpdateError(fabs(cte));
-		  speed =0.7 -pid_speed.p[0] * pid_speed.p_error - pid_speed.p[1] * pid_speed.i_error - pid_speed.p[2] * pid_speed.d_error;
+		  speed =0.6 -pid_speed.p[0] * pid_speed.p_error - pid_speed.p[1] * pid_speed.i_error - pid_speed.p[2] * pid_speed.d_error;
           
           // DEBUG
           //std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
