@@ -26,7 +26,7 @@ _tuning the PID controller for throttle value_
 
 After the PID controller for steering angle being fine tuned, I set a PD controller for throttle value. Since the total error did not matter much on the longitudinal speed control, the I component was abundoned. Besides, since the direction of CTE made no difference of letting the vehicle slow down, the input to the PD controller was the absolute value of CTE. Then I ran the same "twiddle" optimization and the same critiria to tune hyperparameters. The final {Kp, Ki, Kd} in the throttle controller is:{0.3597, 0, 0.1199}.
 
-The method to tune the two PID controllers was not perfect but good enough to get appropriate hyperparameters. Because of the sequence of tuning the two controllers, the first controller to be tuned, which is for steering angle, took the major effect on driving the vehicle along the track. The controller for throttle value just made the vehicle run smoothly and made it possible to increase the reference speed. In this case, I set the reference throttle value to be 0.6.
+The method to tune the two PID controllers was not perfect but good enough to get appropriate hyperparameters. Because of the sequence of tuning the two controllers, the first controller to be tuned, which was for steering angle, took the major effect on driving the vehicle along the track. The controller for throttle value just made the vehicle run smoothly and made it possible to increase the reference speed. In this case, I set the reference throttle value to be 0.6.
 
 ## Dependencies
 
