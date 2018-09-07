@@ -8,6 +8,12 @@ The purpose of the project is to build PID controllers for the vehicle in the si
 The simulator will provide the cross track error (CTE) and the velocity (mph) in order to compute the appropriate steering angle. And PID controllers will output the steering angle and throttle value, which will then be used to drive the vehicle in the track. 
 
 ## Reflection
+
+The following is the final output video.
+.[output video](./output_video_pid.mp4)
+
+The followings are discussion points.
+
 * **Describe the effect each of the P, I, D components had in your implementation**
 
 The P means proportional. It controls how intensely the vehicle responds to CTE. If the CTE is the same, the vehicle with smaller Kp will steer or deaccelerate slighter.
